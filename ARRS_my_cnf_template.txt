@@ -24,8 +24,7 @@ skip_name_resolve = 1
 datadir                         = /data01/db
 tmpdir                          = /data01/tmp
 pid-file                        = /data01/db/my.pid
-##open_files_limit                = 65535
-open_files_limit                  = 16384
+open_files_limit                  = 65535
 
 
 # added by Bill Mitchell to stop error in startup
@@ -41,7 +40,8 @@ max_connect_errors              = 10
 key_buffer_size                 = 15G
 ##key_buffer_size                 = 10G
 max_allowed_packet              = 1024M
-table_open_cache                = 4096
+##New value for table _open cache based on calulations
+table_open_cache                = 16384
 table_definition_cache          = 4096
 sort_buffer_size                = 8M
 join_buffer_size                = 4M
@@ -53,23 +53,27 @@ binlog_cache_size               = 64K
 # to address Error_code: 1193
 binlog_checksum                 = none
 max_heap_table_size             = 64M
-thread_cache_size               = 32
+#Changed by BM to match calculus of Connections/Threads_Created = 'value'
+#if result in 'value' is greater than '.01' - increase thread_cache_size to at least max_used_connections
+thread_cache_size               = 192
+#thread_cache_size               = 32
 ###Turn off query cache   BM Sep 24   2019
 query_cache_size                = 0
 query_cache_limit               = 0
-#  old QUERY CACHE values   BM Sep 23  2019
+#  old QUERY CACHE values
 ##query_cache_size                = 512M
 ##query_cache_limit               = 16M
 ft_min_word_len                 = 4
 thread_stack                    = 192K
 transaction_isolation           = REPEATABLE-READ
-tmp_table_size                  = 4G
+tmp_table_size                  = 512M
 # Larger values for bulk load buffer may be wasting memory.  BM Sep 24  2019
 bulk_insert_buffer_size         = 1G
 myisam_data_pointer_size        = 5
 # reset by BM dynamically on Dec 29  2019
+myisam_sort_buffer_size         = 1024M
 #myisam_sort_buffer_size         = 936870912
-myisam_sort_buffer_size         = 512M
+#myisam_sort_buffer_size         = 512M
 myisam_max_sort_file_size       = 100G
 myisam_repair_threads           = 4
 
