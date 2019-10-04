@@ -168,4 +168,3 @@ err-log                         = /var/log/mysqld.err.log
 
 [mysql]
 no-auto-rehash
-
