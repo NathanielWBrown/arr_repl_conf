@@ -53,7 +53,6 @@ binlog_cache_size               = 64K
 # Binlog_checksum variabled added by nwbrown 1/29/2018
 # to address Error_code: 1193
 binlog_checksum                 = none
-max_heap_table_size             = 64M
 #Changed by BM to match calculus of Connections/Threads_Created = 'value'
 #if result in 'value' is greater than '.01' - increase thread_cache_size to at least max_used_connections
 thread_cache_size               = 192
@@ -67,7 +66,9 @@ query_cache_limit               = 0
 ft_min_word_len                 = 4
 thread_stack                    = 192K
 transaction_isolation           = REPEATABLE-READ
-tmp_table_size                  = 512M
+tmp_table_size                  = 4096M
+max_heap_table_size             = 4096M
+
 # Larger values for bulk load buffer may be wasting memory.  BM Sep 24  2019
 bulk_insert_buffer_size         = 1G
 myisam_data_pointer_size        = 5
