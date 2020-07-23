@@ -76,7 +76,9 @@ myisam_data_pointer_size        = 5
 myisam_sort_buffer_size         = 1024M
 #myisam_sort_buffer_size         = 936870912
 #myisam_sort_buffer_size         = 512M
-myisam_max_sort_file_size       = 100G
+#CHANGED myisam_max_sort_file_size to 500G BM Oct 21 2019
+#myisam_max_sort_file_size       = 100G
+myisam_max_sort_file_size       = 500G
 myisam_repair_threads           = 4
 
 ##Footnote for later setting...
